@@ -32,7 +32,7 @@ const register = TryCatch(async (req, res) => {
       user,
       otp,
     },
-    process.env.Activation_Secret,
+    process.env.ACTIVATION_SECRET,
     {
       expiresIn: "5m",
     }
@@ -56,7 +56,7 @@ const register = TryCatch(async (req, res) => {
 const verifyUser = TryCatch(async (req, res) => {
   const { otp, activationToken } = req.body;
 
-  const verify = jwt.verify(activationToken, process.env.Activation_Secret);
+  const verify = jwt.verify(activationToken, process.env.ACTIVATION_SECRET);
 
   if (!verify)
     return res.status(400).json({
@@ -98,7 +98,7 @@ const verifyUser = TryCatch(async (req, res) => {
         message: "wrong Password",
       });
   
-    const token = jwt.sign({ _id: user._id }, process.env.Jwt_Sec, {
+    const token = jwt.sign({ _id: user._id }, process.env.JWT_SEC, {
       expiresIn: "15d",
     });
   

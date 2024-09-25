@@ -10,7 +10,7 @@ const User=require("../modals/user-modal.js");
         message: "Please Login",
       });
 
-    const decodedData = jwt.verify(token, process.env.Jwt_Sec);
+    const decodedData = jwt.verify(token, process.env.JWT_SEC);
 
     req.user = await User.findById(decodedData._id);
 
